@@ -11,14 +11,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  final login = TextEditingController();
+  final loginController = TextEditingController();
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final localLogin = prefs.getString(Constants.login);
-      if (localLogin != null) login.text = localLogin;
+      if (localLogin != null) loginController.text = localLogin;
     });
     super.initState();
   }
@@ -34,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Column(
               children: [
                 TextFormField(
-                  controller: login,
+                  controller: loginController,
                   decoration:
                       const InputDecoration(hintText: 'Enter your login'),
                 ),
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () async {
                       SharedPreferences prefs =
                           await SharedPreferences.getInstance();
-                      prefs.setString(Constants.login, login.text);
+                      prefs.setString(Constants.login, loginController.text);
                     },
                     child: const Text('Send')),
               ],
