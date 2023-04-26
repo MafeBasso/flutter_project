@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_project/services/graphql_client.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'app/router/router.dart';
 import 'app/router/routes.dart';
 
-void main() {
+Future<void> main() async {
+  await graphQLConfig.init();
   runApp(const MyApp());
 }
 
@@ -12,14 +15,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return GraphQLProvider(
+      client: graphQLConfig.client,
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: Routes.splash,
+        routes: routes,
       ),
-      initialRoute: Routes.splash,
-      routes: routes,
     );
   }
 }
-
