@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/services/graphql_client.dart';
+import 'package:flutter_project/services/router/routes.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
-import 'app/router/router.dart';
-import 'app/router/routes.dart';
+import 'services/router/router.dart';
 
 Future<void> main() async {
   await graphQLConfig.init();
