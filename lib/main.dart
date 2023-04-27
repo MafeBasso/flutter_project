@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/services/graphql_client.dart';
+import 'package:flutter_project/services/graphql_config.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'app/router/router.dart';
