@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_project/domain/entities/user.dart';
 
 class UserLoginState extends Equatable {
   const UserLoginState();
