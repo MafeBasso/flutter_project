@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_project/app/failure/failure.dart';
 import 'package:flutter_project/data/datasources/user_datasource.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
@@ -42,5 +43,18 @@ void main() {
 
     final result = await userDataSource.getUserInfo(login: login);
     expect(result, Right(user));
+  });
+
+  test('Should return a GetUserInfoFailure on null', () async {
+    when(
+          () => graphQLClient.query(queryOptions),
+    ).thenAnswer((_) async => queryResult);
+
+    when(
+          () => queryResult.data,
+    ).thenReturn(null);
+
+    final result = await userDataSource.getUserInfo(login: login);
+    expect(result, Left(GetUserInfoFailure()));
   });
 }

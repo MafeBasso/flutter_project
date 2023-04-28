@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_project/app/failure/failure.dart';
 import 'package:flutter_project/domain/usecases/get_user_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -18,5 +19,13 @@ void main() {
 
     final result = await sut(login);
     expect(result, Right(user));
+  });
+
+  test('Should return a GetUserInfoFailure on error', () async {
+    when(() => userRepository.getUserInfo(login: login))
+        .thenAnswer((_) async => Left(GetUserInfoFailure()));
+
+    final result = await sut(login);
+    expect(result, Left(GetUserInfoFailure()));
   });
 }
