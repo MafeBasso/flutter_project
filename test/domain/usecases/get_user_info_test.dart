@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_project/domain/usecases/get_user_info.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -13,9 +14,9 @@ void main() {
 
   test('Should return a user on success', () async {
     when(() => userRepository.getUserInfo(login: login))
-        .thenAnswer((_) async => user);
+        .thenAnswer((_) async => Right(user));
 
     final result = await sut(login);
-    expect(result, user);
+    expect(result, Right(user));
   });
 }

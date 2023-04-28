@@ -1,18 +1,21 @@
+import 'package:dartz/dartz.dart';
+import 'package:flutter_project/app/failure/failure.dart';
 import 'package:flutter_project/domain/entities/user.dart';
 import 'package:flutter_project/domain/entities/user_extention.dart';
+import 'package:flutter_project/services/graphql/graphql_config.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 abstract class UserDataSource {
-  Future<User> getUserInfo({required String login});
+  Future<Either<Failure, User>> getUserInfo({required String login});
 }
 
 class UserDataSourceImpl implements UserDataSource {
-  const UserDataSourceImpl({required GraphQLClient graphQLClient})
-      : _graphQLClient = graphQLClient;
+  UserDataSourceImpl({GraphQLClient? graphQLClient})
+      : _graphQLClient = graphQLClient ?? graphQLConfig.client.value;
   final GraphQLClient _graphQLClient;
 
   @override
-  Future<User> getUserInfo({required String login}) async {
+  Future<Either<Failure, User>> getUserInfo({required String login}) async {
     final response = await _graphQLClient.query(QueryOptions(document: gql('''
       query GetUser(\$login: String!) {
         user(login: \$login) {
@@ -24,6 +27,8 @@ class UserDataSourceImpl implements UserDataSource {
       'login': login,
     }));
 
-    return UserExtensions.fromMap(response.data as Map);
+    if(response.data == null) return Left(GetUserInfoFailure());
+
+    return Right(UserExtensions.fromMap(response.data as Map));
   }
 }

@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_project/services/graphql_config.dart';
+import 'package:flutter_project/services/graphql/graphql_config.dart';
+import 'package:flutter_project/services/injectable/injectable.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'app/router/router.dart';
 import 'app/router/routes.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await graphQLConfig.init();
+  setupDependencies();
   runApp(const MyApp());
 }
 

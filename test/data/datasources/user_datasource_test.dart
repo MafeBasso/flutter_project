@@ -1,11 +1,12 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter_project/data/datasources/user_datasource.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../domain/entities/user_fixture.dart';
-import '../../services/mock_graphql_client.dart';
-import '../../services/mock_graphql_query_result.dart';
+import '../../services/graphql/mock_graphql_client.dart';
+import '../../services/graphql/mock_graphql_query_result.dart';
 
 void main() {
   const login = 'login';
@@ -40,6 +41,6 @@ void main() {
     ).thenReturn(graphQLResponse);
 
     final result = await userDataSource.getUserInfo(login: login);
-    expect(result, user);
+    expect(result, Right(user));
   });
 }
