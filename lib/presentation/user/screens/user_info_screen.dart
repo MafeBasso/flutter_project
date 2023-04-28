@@ -39,6 +39,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                     Text(
                       state.user.bio ?? 'No bio',
                     ),
+                    if (state.user.repositories != null)
+                      Expanded(
+                        child: ListView.builder(
+                            itemCount: state.user.repositories!.length,
+                            itemBuilder: (context, index) {
+                              return Text(state.user.repositories![index].name,);
+                            }),
+                      ),
                   ],
                 );
               }

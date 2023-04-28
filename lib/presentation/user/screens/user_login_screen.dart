@@ -45,12 +45,16 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: Form(
                   key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     children: [
                       TextFormField(
                         controller: _userLoginCubit.loginController,
                         decoration:
                             const InputDecoration(hintText: 'Enter your login'),
+                        validator: (value) {
+                          return value != '' ? null : 'Login cannot be empty';
+                        },
                       ),
                       TextButton(
                           onPressed: () =>
@@ -66,8 +70,8 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
   }
 
   Future<void> send(String? login) async {
-    if (login != null) {
-      final isUpdated = await _userLoginCubit.updateUserLogin(login);
+    if (_formKey.currentState!.validate()) {
+      final isUpdated = await _userLoginCubit.updateUserLogin(login!);
       isUpdated
           ? AppNavigation.pushNamed(context, routeName: Routes.userInfo)
           : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -75,7 +79,7 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
             ));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Login cannot be null'),
+        content: Text('Login cannot be empty'),
       ));
     }
   }

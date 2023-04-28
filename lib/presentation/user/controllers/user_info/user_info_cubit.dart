@@ -22,7 +22,7 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     final localLogin = prefs.getString(Constants.login);
 
     if (localLogin != null) {
-      final result = await _getUserInfo(localLogin);
+      final result = await _getUserInfo(localLogin, 100);
 
       result.fold((l) => emit(const UserInfoStateError()),
           (user) => emit(UserInfoStateLoaded(user: user)));
