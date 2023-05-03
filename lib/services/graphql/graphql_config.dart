@@ -13,7 +13,7 @@ class GraphQLConfig {
     );
 
     final AuthLink authLink = AuthLink(
-      getToken: () async => 'Bearer <YOUR_PERSONAL_ACCESS_TOKEN>',
+      getToken: () async => 'Bearer ${Constants.gitHubToken}',
     );
 
     final Link link = authLink.concat(httpLink);
