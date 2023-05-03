@@ -6,7 +6,9 @@ Libraries covered: bloc, graphql, shared preferences.
 The user should open the app, type the GitHub login and show information from the user.
 
 # How to run
-```flutter run --dart-define=FINE_GRAINED_GIT_HUB_TOKEN='<YOUR_FINE_GRAINED_GIT_HUB_TOKEN>'```
+```
+flutter run --dart-define=FINE_GRAINED_GIT_HUB_TOKEN='<YOUR_FINE_GRAINED_GIT_HUB_TOKEN>'
+```
 
 # Flutter version
 Flutter 3.3.10
