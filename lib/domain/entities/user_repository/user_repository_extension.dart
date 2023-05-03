@@ -6,12 +6,4 @@ extension UserRepositoryExtensions on UserRepository {
       name: map['name'],
     );
   }
-
-  UserRepository copyWith({
-    required String name,
-  }) {
-    return UserRepository(
-      name: name,
-    );
-  }
 }

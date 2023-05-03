@@ -11,16 +11,4 @@ extension UserExtensions on User {
           .toList(),
     );
   }
-
-  User copyWith({
-    String? avatarUrl,
-    String? bio,
-    List<UserRepository>? repositories,
-  }) {
-    return User(
-      avatarUrl: avatarUrl ?? this.avatarUrl,
-      bio: bio ?? this.bio,
-      repositories: repositories ?? this.repositories,
-    );
-  }
 }
