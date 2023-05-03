@@ -8,7 +8,3 @@ final routes = <String, Widget Function(BuildContext)>{
   Routes.login: (context) => const UserLoginScreen(),
   Routes.userInfo: (context) => const UserInfoScreen(),
 };
-
-// extension<T> on BuildContext {
-//   T get args => ModalRoute.of(this)!.settings.arguments as T;
-// }

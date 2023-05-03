@@ -21,11 +21,7 @@ class AppNavigation {
     );
   }
 
-  void pop(BuildContext context, {String? fallbackRoute}) {
-    if (Navigator.canPop(context)) {
-      Navigator.of(context).pop();
-    } else if (fallbackRoute != null) {
-      pushNamedAndRemoveAll(context, routeName: fallbackRoute);
-    }
+  void pop(BuildContext context) {
+    Navigator.of(context).pop();
   }
 }
