@@ -73,7 +73,9 @@ class _UserLoginScreenState extends State<UserLoginScreen> {
     if (_formKey.currentState!.validate()) {
       final isUpdated = await _userLoginCubit.updateUserLogin(login!);
       isUpdated
-          ? AppNavigation.pushNamed(context, routeName: Routes.userInfo)
+          ? injectable
+              .get<AppNavigation>()
+              .pushNamed(context, routeName: Routes.userInfo)
           : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               content: Text('Could not update cache login'),
             ));

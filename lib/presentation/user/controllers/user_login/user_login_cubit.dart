@@ -7,8 +7,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 class UserLoginCubit extends Cubit<UserLoginState> {
   UserLoginCubit() : super(const UserLoginStateLoading());
 
-  static const className = 'UserLoginCubit';
-
   late TextEditingController _loginController;
 
   TextEditingController get loginController => _loginController;
@@ -27,7 +25,6 @@ class UserLoginCubit extends Cubit<UserLoginState> {
 
   Future<bool> updateUserLogin(String login) async {
     try {
-      emit(const UserLoginStateLoading());
       SharedPreferences prefs = await SharedPreferences.getInstance();
       final loginIsSet = await prefs.setString(Constants.login, login);
       if (loginIsSet) _loginController = TextEditingController(text: login);

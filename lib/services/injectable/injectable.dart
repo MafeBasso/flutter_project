@@ -1,3 +1,4 @@
+import 'package:flutter_project/app/router/app_navigation.dart';
 import 'package:flutter_project/data/datasources/user_datasource.dart';
 import 'package:flutter_project/data/repositories/user_repository.dart';
 import 'package:flutter_project/domain/repositories/user_repository.dart';
@@ -34,4 +35,6 @@ void setupDependencies() {
   injectable.registerSingleton<UserLoginCubit>(
     UserLoginCubit(),
   );
+
+  injectable.registerLazySingleton<AppNavigation>(() => AppNavigation());
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppNavigation {
-  static void pushNamed<T>(
+  void pushNamed<T>(
     BuildContext context, {
     required String routeName,
     T? arguments,
@@ -9,7 +9,7 @@ class AppNavigation {
     Navigator.of(context).pushNamed(routeName, arguments: arguments);
   }
 
-  static void pushNamedAndRemoveAll<T>(
+  void pushNamedAndRemoveAll<T>(
     BuildContext context, {
     required String routeName,
     T? arguments,
@@ -21,7 +21,7 @@ class AppNavigation {
     );
   }
 
-  static void pop(BuildContext context, {String? fallbackRoute}) {
+  void pop(BuildContext context, {String? fallbackRoute}) {
     if (Navigator.canPop(context)) {
       Navigator.of(context).pop();
     } else if (fallbackRoute != null) {

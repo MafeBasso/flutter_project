@@ -32,10 +32,11 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
                 );
               } else if (state is UserInfoStateLoaded) {
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      state.user.avatarUrl ?? 'No avatar URL',
-                    ),
+                    state.user.avatarUrl != null ? Image.network(
+                      state.user.avatarUrl!,
+                    ) : const Text('No avatar URL'),
                     Text(
                       state.user.bio ?? 'No bio',
                     ),

@@ -11,8 +11,6 @@ class UserInfoCubit extends Cubit<UserInfoState> {
   })  : _getUserInfo = getUserInfo ?? injectable.get<GetUserInfo>(),
         super(const UserInfoStateLoading());
 
-  static const className = 'UserInfoCubit';
-
   final GetUserInfo _getUserInfo;
 
   Future<void> loadUserInfo() async {
