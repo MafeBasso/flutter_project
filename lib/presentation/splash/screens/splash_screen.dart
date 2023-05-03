@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
         const Duration(milliseconds: 300),
         () => injectable
             .get<AppNavigation>()
-            .pushNamed(context, routeName: Routes.login));
+            .pushNamedAndRemoveAll(context, routeName: Routes.login));
     super.initState();
   }
 

@@ -26,7 +26,7 @@ void main() {
       await tester.pumpAndSettle(
         const Duration(milliseconds: 300),
       );
-      verify(() => injectable.get<AppNavigation>().pushNamed(
+      verify(() => injectable.get<AppNavigation>().pushNamedAndRemoveAll(
             any(),
             routeName: Routes.login,
           )).called(1);
