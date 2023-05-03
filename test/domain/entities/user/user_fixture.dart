@@ -5,5 +5,5 @@ class UserFixture {
   static User model = User(
       avatarUrl: 'https://avatarUrl',
       bio: 'My bio',
-      repositories: [UserRepositoryFixture.model]);
+      repositories: UserRepositoryFixture.list);
 }
